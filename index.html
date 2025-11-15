@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SignSense Portal (INVOFEST 2025)</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous" defer></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/ml5@0.4.3/dist/ml5.min.js" crossorigin="anonymous" defer></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 { color: #4CAF50; margin-top: 0; }
+        h2 {
+            color: #FFC107; /* Warna kuning untuk hasil */
+            font-size: 2.5rem;
+            margin: 10px 0;
+            min-height: 50px;
+        }
+        #output_canvas {
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            background-color: #222;
+            width: 640px;
+            height: 480px;
+        }
+        #input_video { display: none; }
+        #controls {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-train { background-color: #03A9F4; color: white; }
+        .btn-train:hover { background-color: #0288D1; }
+        .btn-predict { background-color: #E91E63; color: white; padding: 15px 25px; font-size: 16px; }
+        .btn-predict:hover { background-color: #C2185B; }
+        #info { margin-top: 10px; color: #aaa; }
+    </style>
+</head>
+<body>
+
+    <h1>SignSense Portal (INVOFEST 2025)</h1>
+    <canvas id="output_canvas" width="640px" height="480px"></canvas>
+    <h2 id="result">Hasil: ...</h2>
+    <p id="info">Latih setiap gerakan 20-30 kali, lalu tekan "AKTIFKAN PENERJEMAH"</p>
+
+    <div id="controls">
+        <button id="btn-halo" class="btn-train">Latih "Halo"</button>
+        <button id="btn-inovasi" class="btn-train">Latih "Inovasi"</button>
+        <button id="btn-sehat" class="btn-train">Latih "Sehat"</button>
+        <button id="btn-alam" class="btn-train">Latih "Alam"</button>
+        <button id="btn-kota" class="btn-train">Latih "Kota"</button>
+        <button id="btn-predict" class="btn-predict">AKTIFKAN PENERJEMAH</button>
+    </div>
+
+    <video id="input_video" autoplay playsinline></video>
+
+    <script>
+        // Menjalankan kode HANYA SETELAH semua HTML dan library siap.
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            console.log("Halaman dan library siap. Memulai skrip...");
+
+            // 1. Ambil elemen HTML
+            const videoElement = document.getElementById('input_video');
+            const canvasElement = document.getElementById('output_canvas');
+            const canvasCtx = canvasElement.getContext('2d');
+            const resultElement = document.getElementById('result');
+            const infoElement = document.getElementById('info');
+
+            // 2. Variabel Global untuk Logika
+            let knn;
+            let latestLandmarks = null;
+            let isPredicting = false;
+            
+            // Cek jika ml5 ada SEBELUM memanggilnya
+            if (typeof ml5 !== 'undefined') {
+                knn = ml5.KNNClassifier();
+                console.log("ml5.js (Logika) berhasil dimuat.");
+            } else {
+                console.error("ERROR: Library ml5.js GAGAL dimuat!");
+                infoElement.innerText = "ERROR: Gagal memuat library Logika (ml5.js).";
+                return; // Hentikan eksekusi jika library penting ini gagal
+            }
+
+            // 3. Fungsi Helper: Meratakan Data
+            function flattenLandmarks(landmarks) {
+                let flatData = [];
+                for (const lm of landmarks) {
+                    flatData.push(lm.x, lm.y, lm.z);
+                }
+                return flatData;
+            }
+
+            // 4. Fungsi Callback MediaPipe
+            function onResults(results) {
+                canvasCtx.save();
+                canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+                canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+
+                if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+                    const landmarks = results.multiHandLandmarks[0];
+                    latestLandmarks = landmarks; 
+                    drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {color: '#FFFFFF', lineWidth: 5});
+                    drawLandmarks(canvasCtx, landmarks, {color: '#4CAF50', lineWidth: 2, radius: 5});
+
+                    if (isPredicting) {
+                        const flatData = flattenLandmarks(landmarks);
+                        knn.classify(flatData, (err, result) => {
+                            if (err) {
+                                console.error(err);
+                            } else {
+                                resultElement.innerText = `Hasil: ${result.label}`;
+                            }
+                        });
+                    }
+                } else {
+                    latestLandmarks = null;
+                }
+                canvasCtx.restore();
+            }
+
+            // 5. Fungsi Logika (Melatih & Memprediksi)
+            function train(label) {
+                if (latestLandmarks) {
+                    const flatData = flattenLandmarks(latestLandmarks);
+                    knn.addExample(flatData, label);
+                    console.log(`Menambah contoh untuk: ${label}`);
+                    infoElement.innerText = `(${label}) Data tersimpan! Lakukan lagi...`;
+                } else {
+                    alert("Tidak ada tangan terdeteksi. Posisikan tangan Anda di depan kamera.");
+                }
+            }
+
+            // 6. Inisialisasi "Otak" (MediaPipe Hands)
+            if (typeof Hands !== 'undefined') {
+                console.log("Library MediaPipe Hands (Otak) berhasil dimuat.");
+                
+                const hands = new Hands({
+                    locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+                });
+                hands.setOptions({
+                    maxNumHands: 1,
+                    modelComplexity: 1,
+                    minDetectionConfidence: 0.5,
+                    minTrackingConfidence: 0.5
+                });
+                hands.onResults(onResults);
+
+                // 7. Inisialisasi "Mata" (Webcam)
+                const camera = new Camera(videoElement, {
+                    onFrame: async () => {
+                        await hands.send({image: videoElement});
+                    },
+                    width: 640,
+                    height: 480
+                });
+                
+                // Mulai kamera
+                camera.start();
+                console.log("Kamera dan MediaPipe sedang dimulai...");
+
+            } else {
+                console.error("ERROR: Library MediaPipe Hands GAGAL dimuat!");
+                infoElement.innerText = "ERROR: Gagal memuat library Otak (MediaPipe).";
+                return;
+            }
+
+            // 8. Hubungkan Tombol ke Fungsi
+            document.getElementById('btn-halo').onclick = () => train('Halo');
+            document.getElementById('btn-inovasi').onclick = () => train('Inovasi');
+            document.getElementById('btn-sehat').onclick = () => train('Sehat');
+            document.getElementById('btn-alam').onclick = () => train('Alam');
+            document.getElementById('btn-kota').onclick = () => train('Kota');
+            
+            document.getElementById('btn-predict').onclick = () => {
+                if (knn.getNumLabels() < 5) {
+                    alert("Anda belum melatih semua 5 gerakan! Latih dulu.");
+                    return;
+                }
+                isPredicting = true;
+                console.log("Mode Prediksi AKTIF");
+                infoElement.innerText = "Mode Penerjemah AKTIF. Coba gerakan Anda!";
+                document.getElementById('controls').style.display = 'none';
+            };
+
+        }); // Akhir dari DOMContentLoaded
+    </script>
+
+</body>
+</html>
+
+public class Pembukaan{
+
+    public void Pengalaman{
+
+        
+    }
+
+
+
+}
