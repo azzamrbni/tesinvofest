@@ -9,6 +9,7 @@ AFRAME.registerComponent('open-in-new-tab', {
   }
 });
 
+// Static gradient shader for background
 AFRAME.registerShader('gradient', {
   schema: {
     topColor: { type: 'color', default: '#1a237e', is: 'uniform' },
@@ -28,11 +29,19 @@ AFRAME.registerShader('gradient', {
     varying vec3 vWorldPosition;
     void main() {
       float h = normalize(vWorldPosition + vec3(0.0, 500.0, 0.0)).y;
-      gl_FragColor = vec4(mix(bottomColor, topColor, max(pow(max(h, 0.0), 0.6), 0.0)), 1.0);
+      
+      // Static gradient: dark blue to teal
+      vec3 color1 = vec3(0.1, 0.14, 0.49); // #1a237e (top - dark blue)
+      vec3 color2 = vec3(0.0, 0.52, 0.56); // #00838f (bottom - teal)
+      
+      vec3 finalColor = mix(color2, color1, h);
+      
+      gl_FragColor = vec4(finalColor, 1.0);
     }
   `
 });
 
+// Cursor trail effect component
 AFRAME.registerComponent('cursor-trail', {
   init: function () {
     this.lastPosition = new THREE.Vector3();
@@ -43,23 +52,28 @@ AFRAME.registerComponent('cursor-trail', {
     this.startTrail = this.startTrail.bind(this);
     this.stopTrail = this.stopTrail.bind(this);
     
+    // Create trail on camera rotation
     this.el.sceneEl.addEventListener('camera-set-active', () => {
       this.camera = this.el.sceneEl.camera;
     });
     
     this.startTrail();
   },
+  
   startTrail: function() {
     this.trailInterval = setInterval(() => {
       this.createTrail();
-    }, 80); 
+    }, 80); // Create trail particle every 80ms for smoother effect
   },
+  
   stopTrail: function() {
     if (this.trailInterval) {
       clearInterval(this.trailInterval);
     }
   },
+  
   tick: function() {
+    // Check if camera moved significantly
     const currentPos = new THREE.Vector3();
     if (this.camera) {
       this.camera.getWorldPosition(currentPos);
@@ -70,17 +84,21 @@ AFRAME.registerComponent('cursor-trail', {
       }
     }
   },
+  
   createTrail: function() {
     if (!this.camera) return;
     
     const scene = this.el.sceneEl;
     const trail = document.createElement('a-sphere');
+    
     const cameraPos = new THREE.Vector3();
     this.camera.getWorldPosition(cameraPos);
     
+    // Get camera direction
     const direction = new THREE.Vector3();
     this.camera.getWorldDirection(direction);
     
+    // Place trail slightly in front of camera
     const trailPos = cameraPos.clone().add(direction.multiplyScalar(1.5));
     
     trail.setAttribute('position', trailPos);
@@ -94,12 +112,14 @@ AFRAME.registerComponent('cursor-trail', {
       emissiveIntensity: 2
     });
     
+    // Fade out animation with smooth easing
     trail.setAttribute('animation', {
       property: 'material.opacity',
       to: 0,
       dur: 1200,
       easing: 'easeOutCubic'
     });
+    
     trail.setAttribute('animation__scale', {
       property: 'scale',
       to: '0.05 0.05 0.05',
@@ -107,6 +127,7 @@ AFRAME.registerComponent('cursor-trail', {
       easing: 'easeOutCubic'
     });
     
+    // Remove after animation
     setTimeout(() => {
       if (trail.parentNode) {
         scene.removeChild(trail);
@@ -115,11 +136,11 @@ AFRAME.registerComponent('cursor-trail', {
     
     scene.appendChild(trail);
   },
+  
   remove: function() {
     this.stopTrail();
   }
 });
-
 
 AFRAME.registerComponent('artwork-loader', {
   init: async function () {
@@ -133,14 +154,9 @@ AFRAME.registerComponent('artwork-loader', {
       const rows = csvData.split('\n').slice(1).filter(row => row.trim());
 
       const numArtworks = rows.length;
+      const radius = 25;
+
       console.log(`Loading ${numArtworks} artworks...`);
-
-      const spacing = 15; 
-      const artHeight = 4.5;  
-      const wallX = 20;      
-
-      const halfPoint = Math.ceil(numArtworks / 2);
-
 
       rows.forEach((row, index) => {
         const regex = /,(?=(?:[^"]*"[^"]*")*[^"]*$)/;
@@ -171,63 +187,64 @@ AFRAME.registerComponent('artwork-loader', {
         
         assets.appendChild(imgAsset);
 
-        let x, z, rotationY;
-        let artworkX; 
-        const y = artHeight; 
+        const angle = (index / numArtworks) * Math.PI * 2;
+        const x = radius * Math.sin(angle);
+        const z = -radius * Math.cos(angle);
+        const y = 3.5;
 
-        if (index < halfPoint) {
-            const i_kiri = index;
-            x = -wallX; 
-            artworkX = -wallX + 0.05; 
-            z = i_kiri * spacing; 
-            rotationY = 90; 
-        } else {
-            const i_kanan = index - halfPoint;
-            x = wallX; 
-            artworkX = wallX - 0.05; 
-            z = i_kanan * spacing; 
-            rotationY = -90; 
-        }
-
-        const artworkEntityId = `artwork-entity-${index}`; 
-        const frameAndArtEntity = document.createElement('a-entity');
-        frameAndArtEntity.setAttribute('id', artworkEntityId);
-        frameAndArtEntity.setAttribute('position', `${artworkX} ${y} ${z}`);
-        frameAndArtEntity.setAttribute('rotation', `0 ${rotationY} 0`);
-
-        const frameColor = '#8C7853'; 
-        const frameDepth = 0.2;      
-        const frameWidth = 0.5;      
-        const artSize = 5.0;         
-        const matteSize = artSize + 0.5; 
-        const backingSize = artSize + 0.8; 
-
-        // Layer 1: Backing (Perunggu)
-        const frameBacking = document.createElement('a-plane');
-        frameBacking.setAttribute('position', '0 0 -0.02'); 
-        frameBacking.setAttribute('width', backingSize);
-        frameBacking.setAttribute('height', backingSize);
-        frameBacking.setAttribute('color', '#8C7853'); 
-        frameAndArtEntity.appendChild(frameBacking);
-
-        // Layer 2: Matte (Krem/Putih)
-        const frameMatte = document.createElement('a-plane');
-        frameMatte.setAttribute('position', '0 0 -0.01'); 
-        frameMatte.setAttribute('width', matteSize);
-        frameMatte.setAttribute('height', matteSize);
-        frameMatte.setAttribute('color', '#F5F5F5'); 
-        frameAndArtEntity.appendChild(frameMatte);
-        
-        // Layer 3: Lukisan
         const artwork = document.createElement('a-image');
         artwork.setAttribute('src', `#${artId}`);
-        artwork.setAttribute('width', artSize);
-        artwork.setAttribute('height', artSize);
-        artwork.setAttribute('position', '0 0 0'); 
-        artwork.setAttribute('material', { shader: 'flat', side: 'double', transparent: false });
+        artwork.setAttribute('width', 6);
+        artwork.setAttribute('height', 6);
+        artwork.setAttribute('position', `${x} ${y} ${z}`);
         
+        const rotationY = THREE.MathUtils.radToDeg(angle) + 180;
+        artwork.setAttribute('rotation', `0 ${rotationY} 0`);
+        
+        // Extract product name from URL for title
+        const urlParts = product_url.split('/');
+        const productSlug = urlParts[urlParts.length - 1] || `Artwork ${index + 1}`;
+        const productTitle = productSlug
+          .replace(/-/g, ' ')
+          .replace(/\b\w/g, l => l.toUpperCase())
+          .substring(0, 40); // Limit length
+        
+        // Create title text above artwork
+        const titleText = document.createElement('a-text');
+        titleText.setAttribute('value', productTitle);
+        titleText.setAttribute('position', `${x} ${y + 3.5} ${z}`);
+        titleText.setAttribute('align', 'center');
+        titleText.setAttribute('color', '#FFD700');
+        titleText.setAttribute('width', 8);
+        titleText.setAttribute('font', 'https://cdn.aframe.io/fonts/Exo2Bold.fnt');
+        titleText.setAttribute('side', 'double');
+        titleText.setAttribute('look-at', '[camera]');
+        container.appendChild(titleText);
+        
+        artwork.setAttribute('material', {
+          shader: 'flat',
+          side: 'double',
+          transparent: false
+        });
+
         artwork.classList.add('clickable');
         artwork.classList.add('artwork-frame');
+
+        artwork.setAttribute('event-set__enter', {
+          _event: 'mouseenter',
+          target: '#sky-env',
+          'material.color': '#ff6b9d',
+          dur: 600,
+          easing: 'easeInOutQuad'
+        });
+        artwork.setAttribute('event-set__leave', {
+          _event: 'mouseleave',
+          target: '#sky-env',
+          'material.color': '#1a4d7a',
+          dur: 600,
+          easing: 'easeInOutQuad'
+        });
+
         artwork.setAttribute('animation__mouseenter', {
           property: 'scale',
           to: '1.1 1.1 1.1',
@@ -240,63 +257,12 @@ AFRAME.registerComponent('artwork-loader', {
           dur: 300,
           startEvents: 'mouseleave'
         });
+
         artwork.setAttribute('open-in-new-tab', {
           href: product_url
         });
-        
-        frameAndArtEntity.appendChild(artwork);
-        container.appendChild(frameAndArtEntity);
 
-
-        const urlParts = product_url.split('/');
-        const productSlug = urlParts[urlParts.length - 1] || `Artwork ${index + 1}`;
-        const productTitle = productSlug
-          .replace(/-/g, ' ')
-          .replace(/\b\w/g, l => l.toUpperCase())
-          .substring(0, 40); 
-
-        const plaqueEntity = document.createElement('a-entity');
-        
-        const plaqueY = (artHeight) + (backingSize/2) + (0.8/2) + 0.2;
-        plaqueEntity.setAttribute('position', `${artworkX} ${plaqueY} ${z}`);
-        plaqueEntity.setAttribute('rotation', `0 ${rotationY} 0`);
-
-        const plaqueBase = document.createElement('a-plane');
-        plaqueBase.setAttribute('position', '0 0 0');
-        plaqueBase.setAttribute('rotation', '0 0 0'); 
-        plaqueBase.setAttribute('width', 4.5);   
-        plaqueBase.setAttribute('height', 0.8);  
-        plaqueBase.setAttribute('color', '#B8A947'); 
-        plaqueEntity.appendChild(plaqueBase);
-
-        const titleText = document.createElement('a-text');
-        titleText.setAttribute('value', productTitle);
-        titleText.setAttribute('position', '0 0 0.01'); 
-        titleText.setAttribute('rotation', '0 0 0'); 
-        titleText.setAttribute('align', 'center');
-        titleText.setAttribute('color', '#333333'); 
-        titleText.setAttribute('width', 4.2); 
-        titleText.setAttribute('font', 'https://cdn.aframe.io/fonts/Exo2Bold.fnt');
-        plaqueEntity.appendChild(titleText);
-        
-        container.appendChild(plaqueEntity);
-
-        const spotLight = document.createElement('a-entity');
-        spotLight.setAttribute('light', {
-          type: 'spot',
-          color: '#FFF8E1', 
-          intensity: 1.5,
-          angle: 35,         
-          penumbra: 0.3,     
-          target: `#${artworkEntityId}` 
-        });
-        
-        let lightX = (x < 0) ? -17 : 17; 
-        
-        spotLight.setAttribute('position', `${lightX} 12 ${z}`); 
-        
-        container.appendChild(spotLight);
-
+        container.appendChild(artwork);
       });
 
       console.log('All artworks loaded into scene');
@@ -305,7 +271,6 @@ AFRAME.registerComponent('artwork-loader', {
     }
   }
 });
-
 
 AFRAME.registerComponent('motion-trail', {
   init: function () {
