@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Impossible Gallery V5</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <script src="main.js"></script>
+
+  <a-scene artwork-loader background="color: #222222">
+    
+    <a-assets id="art-assets">
+      <img id="wood-floor" src="https://cdn.glitch.global/29e07830-23fe-4B17-A5d3-03c146399999/wood.jpg?v=1655109007071" crossorigin="anonymous">
+    </a-assets>
+
+    <a-plane id="floor" 
+             position="0 0 35" 
+             rotation="-90 0 0" 
+             width="40" 
+             height="110" 
+             src="#wood-floor"
+             repeat="15 22">
+    </a-plane>
+
+    <a-plane id="ceiling"
+             position="0 12.5 35" 
+             rotation="90 0 0" 
+             width="40" 
+             height="110" 
+             material="color: #FAEBD7">
+    </a-plane>
+
+    <a-plane id="wall-left"
+             position="-20 6.25 35" 
+             rotation="0 90 0"
+             width="110" 
+             height="12.5" 
+             material="color: #FAEBD7">
+    </a-plane>
+    <a-plane id="wall-right"
+             position="20 6.25 35" 
+             rotation="0 -90 0"
+             width="110" 
+             height="12.5" 
+             material="color: #FAEBD7">
+    </a-plane>
+    
+    <a-plane id="wall-back"
+             position="0 6.25 -20" 
+             rotation="0 180 0" 
+             width="40" 
+             height="12.5" 
+             material="color: #FAEBD7">
+    </a-plane>
+
+    <a-plane id="wall-front"
+             position="0 6.25 90" 
+             rotation="0 180 0" 
+             width="40" 
+             height="12.5" 
+             material="color: #FAEBD7">
+    </a-plane>
+
+
+    <a-box id="baseboard-left" position="-19.9 0.1 35" rotation="0 90 0" width="110" height="0.2" depth="0.1" color="#C3B091"></a-box>
+    <a-box id="baseboard-right" position="19.9 0.1 35" rotation="0 -90 0" width="110" height="0.2" depth="0.1" color="#C3B091"></a-box>
+    
+    <a-entity id="ceiling-beams">
+      <a-box position="0 12.25 -10" scale="40 0.5 0.5" color="#C3B091"></a-box> <a-box position="0 12.25 0" scale="40 0.5 0.5" color="#C3B091"></a-box>
+      <a-box position="0 12.25 20" scale="40 0.5 0.5" color="#C3B091"></a-box>
+      <a-box position="0 12.25 40" scale="40 0.5 0.5" color="#C3B091"></a-box>
+      <a-box position="0 12.25 60" scale="40 0.5 0.5" color="#C3B091"></a-box>
+      <a-box position="0 12.25 80" scale="40 0.5 0.5" color="#C3B091"></a-box>
+    </a-entity>
+
+
+    <a-light type="hemisphere" color="#FFF8E1" groundColor="#A08060" intensity="0.6"></a-light>
+    <a-light type="directional" color="#FFF8E1" intensity="0.2" position="5 10 7.5"></a-light>
+
+
+    <a-entity id="artwork-container"></a-entity>
+
+    <a-entity id="camera-rig" position="0 1.6 -15" rotation="0 180 0" motion-trail cursor-trail teleport-controls="collisionEntities: #floor, #wall-left, #wall-right, #wall-back, #wall-front, #baseboard-left, #baseboard-right, #ceiling-beams; landingEntities: #floor">
+      <a-camera>
+        <a-cursor fuse="true" fuse-timeout="5000" color="#FFFFFF" raycaster="objects: .clickable">
+        </a-cursor>
+        <a-text id="onboarding-text" 
+                value="Tatap artwork selama 5 detik untuk membuka link produk." 
+                position="0 -0.5 -1.5" 
+                align="center"
+                color="#FFFFFF"
+                width="2"
+                class="text-glow">
+        </a.text>
+      </a-camera>
+    </a-entity>
+    
+  </a-scene>
+</body>
+</html>
