@@ -9,12 +9,11 @@ AFRAME.registerComponent('open-in-new-tab', {
   }
 });
 
-// Animated gradient shader for dynamic background
+// Static gradient shader for background
 AFRAME.registerShader('gradient', {
   schema: {
     topColor: { type: 'color', default: '#1a237e', is: 'uniform' },
-    bottomColor: { type: 'color', default: '#00695c', is: 'uniform' },
-    time: { type: 'time', is: 'uniform' }
+    bottomColor: { type: 'color', default: '#00695c', is: 'uniform' }
   },
   vertexShader: `
     varying vec3 vWorldPosition;
@@ -27,21 +26,15 @@ AFRAME.registerShader('gradient', {
   fragmentShader: `
     uniform vec3 topColor;
     uniform vec3 bottomColor;
-    uniform float time;
     varying vec3 vWorldPosition;
     void main() {
       float h = normalize(vWorldPosition + vec3(0.0, 500.0, 0.0)).y;
       
-      // Animated color shift
-      vec3 color1 = vec3(0.1, 0.14, 0.49); // #1a237e
-      vec3 color2 = vec3(0.0, 0.52, 0.56); // #00838f
-      vec3 color3 = vec3(1.0, 0.42, 0.62); // #ff6b9d
-      vec3 color4 = vec3(1.0, 0.84, 0.0);  // #ffd700
+      // Static gradient: dark blue to teal
+      vec3 color1 = vec3(0.1, 0.14, 0.49); // #1a237e (top - dark blue)
+      vec3 color2 = vec3(0.0, 0.52, 0.56); // #00838f (bottom - teal)
       
-      float cycle = sin(time * 0.2) * 0.5 + 0.5;
-      vec3 mixColor1 = mix(color1, color2, cycle);
-      vec3 mixColor2 = mix(color3, color4, cycle);
-      vec3 finalColor = mix(mixColor2, mixColor1, h);
+      vec3 finalColor = mix(color2, color1, h);
       
       gl_FragColor = vec4(finalColor, 1.0);
     }
@@ -220,12 +213,12 @@ AFRAME.registerComponent('artwork-loader', {
         const titleText = document.createElement('a-text');
         titleText.setAttribute('value', productTitle);
         titleText.setAttribute('position', `${x} ${y + 3.5} ${z}`);
-        titleText.setAttribute('rotation', `0 ${rotationY} 0`);
         titleText.setAttribute('align', 'center');
-        titleText.setAttribute('color', '#b8a947ff');
-        titleText.setAttribute('width', 16);
+        titleText.setAttribute('color', '#FFD700');
+        titleText.setAttribute('width', 8);
         titleText.setAttribute('font', 'https://cdn.aframe.io/fonts/Exo2Bold.fnt');
         titleText.setAttribute('side', 'double');
+        titleText.setAttribute('look-at', '[camera]');
         container.appendChild(titleText);
         
         artwork.setAttribute('material', {

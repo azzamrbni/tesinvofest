@@ -19,14 +19,27 @@
 
     <a-text 
       value="IMPOSSIBLE GALLERY"
-      position="0 10 -25"
+      position="0 8 0"
       width="40"
       align="center"
       color="#FFD700"
       font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
       negate="false"
       side="double"
-      opacity="1">
+      opacity="1"
+      look-at="[camera]">
+    </a-text>
+    
+    <a-text 
+      value="Tatap gambar selama 5 detik untuk buka link produk"
+      position="0 6.5 0"
+      width="30"
+      align="center"
+      color="#FFFFFF"
+      font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
+      side="double"
+      opacity="0.9"
+      look-at="[camera]">
     </a-text>
 
     <a-plane id="ground" 
@@ -47,11 +60,11 @@
 
     <a-entity id="camera-rig" position="0 1.6 5" motion-trail cursor-trail>
       <a-camera>
-        <a-cursor fuse="true" fuse-timeout="1000" color="#FFFFFF" raycaster="objects: .clickable">
+        <a-cursor fuse="true" fuse-timeout="5000" color="#FFFFFF" raycaster="objects: .clickable">
         </a-cursor>
 
         <a-text id="onboarding-text" 
-                value="Tatap untuk berinteraksi" 
+                value="Tatap 5 detik untuk buka produk" 
                 position="0 -0.5 -1.5" 
                 align="center"
                 color="#FFFFFF"
