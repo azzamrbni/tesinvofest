@@ -1,116 +1,74 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Impossible Gallery Prototype</title>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <style>
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-      }
-    </style>
-    <script>
-      AFRAME.registerComponent('link-on-click', {
-        schema: {
-          url: {type: 'string', default: ''}
-        },
-        init: function() {
-          this.el.addEventListener('click', () => {
-            if (this.data.url) {
-              window.open(this.data.url, '_blank');
-            }
-          });
-        }
-      });
-    </script>
-  </head>
-  <body>
-    <a-scene>
-      <a-assets>
-        <img id="art-1" src="https://picsum.photos/seed/art1/1000/1000" />
-        <img id="art-2" src="https://picsum.photos/seed/art2/1000/1000" />
+<head>
+  <title>Impossible Gallery V5</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <script src="main.js"></script>
+  <a-scene artwork-loader>
+    
+    <a-assets id="art-assets"></a-assets>
 
-        <a-asset-item id="avatar-model" src=""></a-asset-item>
-      </a-assets>
+    <a-sky
+           material="shader: gradient; bottomColor: #00695c">
+    </a-sky>
 
-      <a-sky id="sky-env" color="#101020"></a-sky>
+    <a-text 
+      value="IMPOSSIBLE GALLERY"
+      position="0 10 -25"
+      width="40"
+      align="center"
+      color="#FFD700"
+      font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
+      negate="false"
+      side="double"
+      opacity="1">
+    </a-text>
 
-      <a-plane
-        id="ground"
-        position="0 0 -4"
-        rotation="-90 0 0"
-        width="50"
-        height="50"
-        color="#303040"
-        shadow
-      >
-      </a-plane>
+    <a-plane id="ground" 
+             position="0 0 -4" 
+             rotation="-90 0 0" 
+             width="100" 
+             height="100" 
+             color="#1a4d7a"
+             material="shader: flat"
+             shadow>
+    </a-plane>
 
-      <a-image
-        id="artwork-1"
-        src="#art-1"
-        width="3"
-        height="3"
-        position="-5 2.5 -8"
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear;"
-        event-set__enter="_event: mouseenter; target: #sky-env; material.color: #4B0082"
-        event-set__leave="_event: mouseleave; target: #sky-env; material.color: #101020"
-        class="clickable"
-        link-on-click="url: https://www.google.com"
-      >
-      </a-image>
+    <a-light type="ambient" color="#4a5f7f" intensity="0.8"></a-light>
+    <a-light type="directional" color="#ffffff" intensity="0.6" position="5 10 7.5"></a-light>
+    <a-light type="point" color="#00FFFF" intensity="1.5" position="0 5 0" distance="30" decay="2"></a-light>
 
-      <a-image
-        id="artwork-2"
-        src="#art-2"
-        width="3"
-        height="3"
-        position="5 2.5 -8"
-        animation="property: rotation; to: 0 -360 0; loop: true; dur: 20000; easing: linear;"
-        event-set__enter="_event: mouseenter; target: #sky-env; material.color: #004D40"
-        event-set__leave="_event: mouseleave; target: #sky-env; material.color: #101020"
-        class="clickable"
-        link-on-click="url: https://www.youtube.com"
-      >
-      </a-image>
+    <a-entity id="artwork-container"></a-entity>
 
-      <a-entity id="camera-rig" position="0 1.6 0">
-        <a-camera>
-          <a-cursor
-            fuse="true"
-            fuse-timeout="1000"
-            color="#FFFFFF"
-            raycaster="objects: .clickable"
-          >
-          </a-cursor>
+    <a-entity id="camera-rig" position="0 1.6 5" motion-trail cursor-trail>
+      <a-camera>
+        <a-cursor fuse="true" fuse-timeout="1000" color="#FFFFFF" raycaster="objects: .clickable">
+        </a-cursor>
 
-          <a-text
-            id="onboarding-text"
-            value="Tatap karya seni untuk mengubah dunia"
-            position="0 -0.5 -1.5"
-            align="center"
-            color="#FFF"
-            width="1.5"
-          >
-          </a-text>
-        </a-camera>
+        <a-text id="onboarding-text" 
+                value="Tatap untuk berinteraksi" 
+                position="0 -0.5 -1.5" 
+                align="center"
+                color="#FFFFFF"
+                width="1.5"
+                class="text-glow">
+        </a-text>
+      </a-camera>
 
-        <a-entity
-          teleport-controls="cameraRig: #camera-rig; ground: #ground; startEvents: teleportstart; endEvents: teleportend"
-        >
-        </a-entity>
+      <a-entity
+        teleport-controls="cameraRig: #camera-rig; ground: #ground; startEvents: teleportstart; endEvents: teleportend">
       </a-entity>
+    </a-entity>
 
-      <a-sphere
-        id="guide-avatar"
-        position="2 1.5 -3"
-        radius="0.2"
-        color="#00FFFF"
-        material="shader: flat"
-        light="type: point; intensity: 2; color: #00FFFF"
-      >
-      </a-sphere>
-    </a-scene>
-  </body>
+    <a-sphere id="guide-avatar" position="2 1.5 -3" radius="0.2" color="#00FFFF" material="shader: flat"
+      light="type: point; intensity: 2; color: #00FFFF">
+    </a-sphere>
+
+  </a-scene>
+</body>
 </html>
