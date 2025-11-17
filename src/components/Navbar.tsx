@@ -33,8 +33,8 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               onClick={() => handleNavigation("home")}
               className="flex items-center gap-3 group"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-lg flex items-center justify-center transform group-hover:scale-105 transition-transform">
-                <span className="text-white">GH</span>
+              <div className="w-12 h-12 flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                <img src="/Logo.png" alt="Galeri Harapan Logo" className="w-full h-full object-contain" />
               </div>
               <span className="text-gray-900 tracking-tight">
                 Galeri Harapan

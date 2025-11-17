@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { ChatWidget } from "./components/ChatWidget";
 import { Home } from "./pages/Home";
 import { TentangMisi } from "./pages/TentangMisi";
 import { GaleriSeniman } from "./pages/GaleriSeniman";
@@ -51,6 +52,7 @@ export default function App() {
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
       <main>{renderPage()}</main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }
