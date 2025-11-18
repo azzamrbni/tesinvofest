@@ -281,7 +281,6 @@ Avatar, Scroll Area, Input, Button, Accordion, Dialog, Checkbox, Select, Tabs, T
 -└── main.js                    # A-Frame VR components
 
 📄 Root Files
--├── DESIGN_PATTERNS.md         # 📖 Design patterns documentation
 -├── README.md                  # 📚 This file
 -├── package.json               # Dependencies
 -├── vite.config.ts             # Vite configuration
