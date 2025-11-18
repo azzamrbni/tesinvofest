@@ -12,8 +12,6 @@
 **Platform galeri seni digital yang inklusif dan memberdayakan seniman berkebutuhan khusus.**  
 Menampilkan karya seni dalam format 2D dan pengalaman VR immersive dengan AI-powered chatbot.
 
-[🚀 Demo Live](#) • [📖 Dokumentasi](#-dokumentasi-lengkap) • [🐛 Report Bug](#) • [✨ Request Feature](#)
-
 </div>
 
 ---
