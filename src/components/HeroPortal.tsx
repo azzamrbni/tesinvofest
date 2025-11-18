@@ -27,7 +27,6 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
           </p>
         </motion.div>
 
-        {/* Portal VR Interaktif */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -42,7 +41,6 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
             tabIndex={0}
             aria-label="Masuk ke Museum VR"
           >
-            {/* Background Image with Animation */}
             <motion.div
               className="absolute inset-0"
               animate={{
@@ -55,7 +53,6 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
                 alt="Museum VR Interior Preview"
                 className="w-full h-full object-cover"
               />
-              {/* Animated Gradient Overlay */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-pink-900/40 to-purple-900/40"
                 animate={{
@@ -65,7 +62,6 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
               />
             </motion.div>
 
-            {/* Glowing Border Effect */}
             <motion.div
               className="absolute inset-0 rounded-2xl"
               animate={{
@@ -76,7 +72,6 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
               transition={{ duration: 0.4 }}
             />
 
-            {/* Center Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
               <motion.div
                 animate={{
@@ -86,7 +81,6 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
                 transition={{ duration: 0.4 }}
                 className="text-center"
               >
-                {/* Icon */}
                 <motion.div
                   className="mb-6 inline-flex items-center justify-center"
                   animate={{
@@ -99,7 +93,6 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
                   </div>
                 </motion.div>
 
-                {/* Text Overlay */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{
@@ -108,14 +101,13 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
                   transition={{ duration: 0.3 }}
                 >
                   <a href="/public/museum.html">
-                    <button className="bg-white hover:bg-gray-50 text-purple-900 px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-xl transition-colors">
+                    <button className="bg-white hover:bg-gray-50 text-purple-900 px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-xl transition-colors cursor-pointer">
                       <span>Masuk ke Museum VR</span>
                       <ArrowRight className="w-5 h-5" />
                     </button>
                   </a>
                 </motion.div>
 
-                {/* Always visible text when not hovered */}
                 <motion.p
                   className="text-white mt-6"
                   animate={{
@@ -128,7 +120,6 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
               </motion.div>
             </div>
 
-            {/* Floating particles effect */}
             {isHovered && (
               <div className="absolute inset-0 pointer-events-none">
                 {[...Array(10)].map((_, i) => (
@@ -155,7 +146,6 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
             )}
           </div>
 
-          {/* Alternative Navigation */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

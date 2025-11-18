@@ -11,14 +11,12 @@ import { BantuanFAQ } from "./pages/BantuanFAQ";
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
 
-  // Handle browser back/forward
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1) || "home";
       setCurrentPage(hash);
     };
 
-    // Set initial page from hash
     handleHashChange();
 
     window.addEventListener("hashchange", handleHashChange);

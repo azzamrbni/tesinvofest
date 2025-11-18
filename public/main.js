@@ -1,8 +1,6 @@
 AFRAME.registerComponent('exit-link', {
   init: function () {
     this.el.addEventListener('click', function () {
-      // Mengarahkan browser kembali ke halaman utama (root)
-      // window.location.origin akan mengarah ke domain utama Anda (misal: http://localhost:5173/)
       window.location.href = window.location.origin; 
     });
   }
@@ -138,7 +136,7 @@ AFRAME.registerComponent('artwork-loader', {
     const container = document.getElementById('artwork-container');
 
     try {
-      const response = await fetch('artworks.csv'); // Ini akan mencari artworks.csv di folder yang sama (public/tesinvofefst/)
+      const response = await fetch('artworks.csv');
       const csvData = await response.text();
       const rows = csvData.split('\n').slice(1).filter(row => row.trim());
 
@@ -211,7 +209,6 @@ AFRAME.registerComponent('artwork-loader', {
         const matteSize = artSize + 0.5; 
         const backingSize = artSize + 0.8; 
 
-        // Layer 1: Backing (Perunggu)
         const frameBacking = document.createElement('a-plane');
         frameBacking.setAttribute('position', '0 0 -0.02'); 
         frameBacking.setAttribute('width', backingSize);
@@ -219,7 +216,6 @@ AFRAME.registerComponent('artwork-loader', {
         frameBacking.setAttribute('color', '#8C7853'); 
         frameAndArtEntity.appendChild(frameBacking);
 
-        // Layer 2: Matte (Krem/Putih)
         const frameMatte = document.createElement('a-plane');
         frameMatte.setAttribute('position', '0 0 -0.01'); 
         frameMatte.setAttribute('width', matteSize);
@@ -227,7 +223,6 @@ AFRAME.registerComponent('artwork-loader', {
         frameMatte.setAttribute('color', '#F5F5F5'); 
         frameAndArtEntity.appendChild(frameMatte);
         
-        // Layer 3: Lukisan
         const artwork = document.createElement('a-image');
         artwork.setAttribute('src', `#${artId}`);
         artwork.setAttribute('width', artSize);

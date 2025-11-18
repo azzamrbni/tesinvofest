@@ -1,6 +1,3 @@
-// RAG Configuration untuk Gemini AI
-// Advanced Prompt Engineering dengan Few-Shot Learning
-
 export const WEBSITE_DATABASE = `
 === GALERI HARAPAN - DATABASE LENGKAP ===
 
@@ -271,7 +268,6 @@ Komisi 10% saat karya terjual.
 
 Ingat: Singkat, jelas, tanpa simbol markdown!`;
 
-// Fungsi untuk generate prompt dengan konteks
 export function generateAIPrompt(userMessage: string, conversationHistory?: string): string {
   const historyContext = conversationHistory 
     ? `\n=== RIWAYAT PERCAKAPAN ===\n${conversationHistory}\n\n` 

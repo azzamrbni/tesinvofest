@@ -80,7 +80,6 @@ export function HelpFAQ() {
   return (
     <section id="bantuan-faq" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-purple-50">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +94,6 @@ export function HelpFAQ() {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-12">
-          {/* Sidebar - Contact Options */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -109,7 +107,7 @@ export function HelpFAQ() {
               <div className="space-y-4">
                 <a
                   href="mailto:support@galeriharapan.id"
-                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-purple-50 transition-colors group"
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-purple-50 transition-colors group cursor-pointer"
                 >
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Mail className="w-6 h-6 text-white" />
@@ -122,7 +120,7 @@ export function HelpFAQ() {
 
                 <a
                   href="tel:+622112345678"
-                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-purple-50 transition-colors group"
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-purple-50 transition-colors group cursor-pointer"
                 >
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Phone className="w-6 h-6 text-white" />
@@ -133,45 +131,12 @@ export function HelpFAQ() {
                     <p className="text-gray-500 text-sm">Sen-Jum, 09:00-17:00</p>
                   </div>
                 </a>
-
-                <a
-                  href="#"
-                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-purple-50 transition-colors group"
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-gray-900 mb-1">Live Chat</div>
-                    <p className="text-gray-600">Chat dengan tim kami</p>
-                    <p className="text-gray-500 text-sm">Online sekarang</p>
-                  </div>
-                </a>
               </div>
 
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <h4 className="text-gray-900 mb-4">Jam Operasional</h4>
-                <div className="space-y-2 text-gray-600">
-                  <div className="flex justify-between">
-                    <span>Senin - Jumat</span>
-                    <span>09:00 - 17:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sabtu</span>
-                    <span>10:00 - 14:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Minggu</span>
-                    <span>Tutup</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </motion.div>
 
-          {/* Main Content - FAQ */}
           <div className="lg:col-span-2">
-            {/* Category Filter */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -184,7 +149,7 @@ export function HelpFAQ() {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-6 py-3 rounded-full transition-all ${
+                    className={`px-6 py-3 rounded-full transition-all cursor-pointer ${
                       selectedCategory === category
                         ? "bg-gradient-to-r from-purple-600 to-pink-500 text-white shadow-lg"
                         : "bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-300"
@@ -196,7 +161,6 @@ export function HelpFAQ() {
               </div>
             </motion.div>
 
-            {/* FAQ Accordion */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -211,7 +175,7 @@ export function HelpFAQ() {
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-purple-50 transition-colors"
+                    className="w-full flex items-center justify-between p-6 text-left hover:bg-purple-50 transition-colors cursor-pointer"
                     aria-expanded={openIndex === index}
                   >
                     <div className="flex items-start gap-4 flex-1">
@@ -242,78 +206,6 @@ export function HelpFAQ() {
                   )}
                 </div>
               ))}
-            </motion.div>
-
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-12 bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <h3 className="text-gray-900 mb-6">Tidak Menemukan Jawaban?</h3>
-              <p className="text-gray-600 mb-8">
-                Kirim pertanyaan Anda kepada kami dan tim support akan segera membantu Anda
-              </p>
-              
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-gray-700 mb-2">
-                      Nama Lengkap
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-colors"
-                      placeholder="Nama Anda"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-gray-700 mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-colors"
-                      placeholder="email@example.com"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-gray-700 mb-2">
-                    Subjek
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-colors"
-                    placeholder="Topik pertanyaan Anda"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-gray-700 mb-2">
-                    Pesan
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={6}
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-colors resize-none"
-                    placeholder="Tuliskan pertanyaan atau masalah Anda..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-4 rounded-full hover:shadow-lg hover:scale-105 transition-all"
-                >
-                  Kirim Pesan
-                </button>
-              </form>
             </motion.div>
           </div>
         </div>

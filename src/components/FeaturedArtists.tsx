@@ -64,7 +64,6 @@ export function FeaturedArtists({ artworks }: FeaturedArtistsProps) {
               className="group"
             >
               <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-                {/* Artwork Image */}
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                   <ImageWithFallback
@@ -74,7 +73,6 @@ export function FeaturedArtists({ artworks }: FeaturedArtistsProps) {
                   />
                 </div>
 
-                {/* Artist Info */}
                 <div className="p-6">
                   <h3 className="text-gray-900 mb-2">
                     {artist.name}
@@ -83,8 +81,7 @@ export function FeaturedArtists({ artworks }: FeaturedArtistsProps) {
                     {artist.description}
                   </p>
 
-                  {/* CTA Button */}
-                  <button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-full inline-flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all group/btn">
+                  <button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-full inline-flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all group/btn cursor-pointer">
                     <span>Lihat Profil</span>
                     <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                   </button>

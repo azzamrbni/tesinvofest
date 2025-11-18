@@ -94,7 +94,6 @@ export function Insights({ insightImages }: InsightsProps) {
   return (
     <section id="wawasan" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +107,6 @@ export function Insights({ insightImages }: InsightsProps) {
           </p>
         </motion.div>
 
-        {/* Featured Articles */}
         <div className="mb-20">
           <motion.h3
             initial={{ opacity: 0 }}
@@ -129,7 +127,6 @@ export function Insights({ insightImages }: InsightsProps) {
                 className="group cursor-pointer"
               >
                 <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-                  {/* Image */}
                   <div className="aspect-[16/9] overflow-hidden relative">
                     <ImageWithFallback
                       src={article.image}
@@ -143,7 +140,6 @@ export function Insights({ insightImages }: InsightsProps) {
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div className="p-8">
                     <h3 className="text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
                       {article.title}
@@ -152,7 +148,6 @@ export function Insights({ insightImages }: InsightsProps) {
                       {article.excerpt}
                     </p>
 
-                    {/* Meta */}
                     <div className="flex flex-wrap items-center gap-4 text-gray-500 mb-6">
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4" />
@@ -168,8 +163,7 @@ export function Insights({ insightImages }: InsightsProps) {
                       </div>
                     </div>
 
-                    {/* CTA */}
-                    <button className="text-purple-600 hover:text-purple-700 inline-flex items-center gap-2 group/btn transition-colors">
+                    <button className="text-purple-600 hover:text-purple-700 inline-flex items-center gap-2 group/btn transition-colors cursor-pointer">
                       <span>Baca Selengkapnya</span>
                       <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
@@ -180,7 +174,6 @@ export function Insights({ insightImages }: InsightsProps) {
           </div>
         </div>
 
-        {/* Regular Articles */}
         <div>
           <motion.h3
             initial={{ opacity: 0 }}
@@ -201,7 +194,6 @@ export function Insights({ insightImages }: InsightsProps) {
                 className="group cursor-pointer"
               >
                 <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-                  {/* Image */}
                   <div className="aspect-[16/9] overflow-hidden relative">
                     <ImageWithFallback
                       src={article.image}
@@ -216,7 +208,6 @@ export function Insights({ insightImages }: InsightsProps) {
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div className="p-6">
                     <h4 className="text-gray-900 mb-3 group-hover:text-purple-600 transition-colors line-clamp-2">
                       {article.title}
@@ -225,7 +216,6 @@ export function Insights({ insightImages }: InsightsProps) {
                       {article.excerpt}
                     </p>
 
-                    {/* Meta */}
                     <div className="flex items-center justify-between text-gray-500 pt-4 border-t border-gray-100">
                       <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4" />
@@ -239,34 +229,6 @@ export function Insights({ insightImages }: InsightsProps) {
             ))}
           </div>
         </div>
-
-        {/* Newsletter CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20"
-        >
-          <div className="bg-gradient-to-br from-purple-600 to-pink-500 rounded-2xl p-12 text-center">
-            <h3 className="text-white mb-4">
-              Dapatkan Wawasan Terbaru di Inbox Anda
-            </h3>
-            <p className="text-purple-100 mb-8 max-w-2xl mx-auto">
-              Berlangganan newsletter kami untuk mendapatkan artikel, tips, dan cerita inspiratif langsung ke email Anda
-            </p>
-            <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-              <input
-                type="email"
-                placeholder="Alamat email Anda"
-                className="flex-1 px-6 py-4 rounded-full focus:outline-none"
-              />
-              <button className="bg-white text-purple-600 px-8 py-4 rounded-full hover:bg-gray-100 transition-colors whitespace-nowrap">
-                Berlangganan
-              </button>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

@@ -6,9 +6,9 @@ import { ScrollArea } from "./ui/scroll-area";
 import { Input } from "./ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import OpenAI from "openai";
-import { generateAIPrompt } from "../utils/knowledgeBase";
+import KnowledgeBaseService from "../services/KnowledgeBaseService";
+import { ChatResponseStrategyManager } from "../strategies/ChatResponseStrategy";
 
-// --- Groq API Configuration ---
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || "";
 const groqClient = new OpenAI({
   apiKey: GROQ_API_KEY,
@@ -37,8 +37,10 @@ export function ChatWidget() {
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  
+  const knowledgeBase = KnowledgeBaseService.getInstance();
+  const strategyManager = new ChatResponseStrategyManager();
 
-  // Auto scroll ke bawah saat ada pesan baru
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
@@ -63,36 +65,38 @@ export function ChatWidget() {
     try {
       let botAnswer: string;
 
-      // Gunakan Groq API dengan RAG lengkap
-      try {
-        if (!GROQ_API_KEY) {
-          throw new Error("API_KEY_MISSING");
+      const strategy = strategyManager.findStrategy(userMsg.text);
+      if (strategy) {
+        botAnswer = strategy.generateResponse(userMsg.text);
+      } else {
+        try {
+          if (!GROQ_API_KEY) {
+            throw new Error("API_KEY_MISSING");
+          }
+
+          const conversationHistory = messages
+            .slice(-4)
+            .map(m => `${m.sender === 'user' ? 'User' : 'Assistant'}: ${m.text}`)
+            .join('\n');
+
+          const systemPrompt = knowledgeBase.generatePrompt(userMsg.text, conversationHistory);
+          
+          const completion = await groqClient.chat.completions.create({
+            model: "llama-3.3-70b-versatile",
+            messages: [
+              { role: "system", content: systemPrompt },
+              { role: "user", content: userMsg.text }
+            ],
+            temperature: 0.7,
+            max_tokens: 1024,
+            top_p: 0.95,
+          });
+
+          botAnswer = completion.choices[0]?.message?.content || "Maaf, tidak ada respons.";
+        } catch (aiError: any) {
+          console.error("Groq API Error:", aiError);
+          botAnswer = "⚠️ Maaf, terjadi gangguan koneksi AI.\n\nSilakan coba lagi atau hubungi admin:\n📞 WhatsApp: +62 21 1234 5678\n✉️ Email: info@galeriharapan.id";
         }
-
-        // Build conversation history for context
-        const conversationHistory = messages
-          .slice(-4) // Last 4 messages for context
-          .map(m => `${m.sender === 'user' ? 'User' : 'Assistant'}: ${m.text}`)
-          .join('\n');
-
-        const systemPrompt = generateAIPrompt(userMsg.text, conversationHistory);
-        
-        const completion = await groqClient.chat.completions.create({
-          model: "llama-3.3-70b-versatile", // Groq's fastest model
-          messages: [
-            { role: "system", content: systemPrompt },
-            { role: "user", content: userMsg.text }
-          ],
-          temperature: 0.7,
-          max_tokens: 1024,
-          top_p: 0.95,
-        });
-
-        botAnswer = completion.choices[0]?.message?.content || "Maaf, tidak ada respons.";
-      } catch (aiError: any) {
-        // If AI fails, use fallback response
-        console.error("Groq API Error:", aiError);
-        botAnswer = "⚠️ Maaf, terjadi gangguan koneksi AI.\n\nSilakan coba lagi atau hubungi admin:\n📞 WhatsApp: +62 21 1234 5678\n✉️ Email: info@galeriharapan.id";
       }
 
       const botMsg: Message = {
@@ -104,7 +108,6 @@ export function ChatWidget() {
 
       setMessages((prev) => [...prev, botMsg]);
     } catch (error: any) {
-      // General error handling
       const errorMsg: Message = {
         id: Date.now() + 1,
         text: "⚠️ Terjadi kesalahan.\n\nSilakan hubungi admin:\n📞 WhatsApp: +62 21 1234 5678\n✉️ Email: info@galeriharapan.id",
@@ -118,13 +121,12 @@ export function ChatWidget() {
   };
 
   const handleWhatsAppClick = () => {
-    // Nomor sesuai FAQ: +62 21 1234 5678 -> format: 622112345678
     window.open("https://wa.me/622112345678?text=Halo%20Admin%20Galeri%20Harapan,%20saya%20butuh%20bantuan.", "_blank");
   };
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
-    if (!isOpen) setMode("selection"); // Reset ke menu awal saat dibuka kembali
+    if (!isOpen) setMode("selection");
   };
 
   return (
@@ -139,7 +141,6 @@ export function ChatWidget() {
             className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col"
             style={{ width: '350px', maxHeight: '600px' }}
           >
-            {/* Header */}
             <div className="bg-gradient-to-r from-purple-600 to-pink-500 p-4 flex justify-between items-center text-white">
               <div className="flex items-center gap-3">
                 <div className="bg-white/20 p-2 rounded-full">
@@ -170,10 +171,8 @@ export function ChatWidget() {
               </button>
             </div>
 
-            {/* Body Content */}
             <div className="bg-gray-50 flex-1 relative" style={{ minHeight: '380px', overflowY: 'auto' }}>
               {mode === "selection" ? (
-                // --- MODE PILIHAN ---
                 <div className="p-6 flex flex-col gap-4 h-full justify-center">
                   <div className="text-center mb-2">
                     <h4 className="text-gray-900 font-medium mb-2">Halo! 👋</h4>
@@ -231,7 +230,6 @@ export function ChatWidget() {
                   </button>
                 </div>
               ) : (
-                // --- MODE CHAT AI ---
                 <div className="flex flex-col h-full" style={{ height: '450px' }}>
                   <ScrollArea className="flex-1" style={{ padding: '1.25rem' }}>
                     <div className="flex flex-col gap-4 pb-6">
@@ -325,7 +323,6 @@ export function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Floating Trigger Button */}
       <motion.button
         onClick={toggleChat}
         whileHover={{ scale: 1.05 }}
@@ -353,13 +350,11 @@ export function ChatWidget() {
               transition={{ duration: 0.2 }}
             >
               <MessageCircle className="w-7 h-7 text-white" />
-              {/* Notification Badge */}
               <span className="absolute top-0 right-0 rounded-full border-2 border-white" style={{ width: '0.875rem', height: '0.875rem', backgroundColor: '#ef4444' }}></span>
             </motion.div>
           )}
         </AnimatePresence>
         
-        {/* Tooltip-like label on hover */}
         {!isOpen && (
           <div className="absolute bg-gray-900 text-white rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none" style={{ right: '100%', marginRight: '1rem', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingTop: '0.375rem', paddingBottom: '0.375rem', fontWeight: 500 }}>
             Butuh Bantuan?

@@ -41,7 +41,6 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
   return (
     <section id="tentang-misi" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +56,6 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
           </p>
         </motion.div>
 
-        {/* Vision & Mission */}
         <div className="grid md:grid-cols-2 gap-12 mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -127,7 +125,6 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
           </motion.div>
         </div>
 
-        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +149,6 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
           </div>
         </motion.div>
 
-        {/* Values */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -187,31 +183,6 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
                 </motion.div>
               );
             })}
-          </div>
-        </motion.div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-12">
-            <h3 className="text-gray-900 mb-4">Bergabunglah dengan Gerakan Kami</h3>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-              Bersama kita dapat menciptakan dunia seni yang lebih inklusif dan memberdayakan.
-              Mari bergabung sebagai seniman, kolektor, atau pendukung.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-4 rounded-full hover:shadow-lg hover:scale-105 transition-all">
-                Daftar Sebagai Seniman
-              </button>
-              <button className="bg-white text-purple-600 border-2 border-purple-600 px-8 py-4 rounded-full hover:bg-purple-50 transition-all">
-                Menjadi Pendukung
-              </button>
-            </div>
           </div>
         </motion.div>
       </div>

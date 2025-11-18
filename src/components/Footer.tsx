@@ -24,7 +24,6 @@ export function Footer() {
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
-          {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
@@ -36,7 +35,6 @@ export function Footer() {
               Platform digital yang memberdayakan seniman berkebutuhan khusus untuk menampilkan
               karya mereka kepada dunia. Bersama, kita membuka peluang dan menginspirasi perubahan.
             </p>
-            {/* Social Media */}
             <div className="flex gap-4">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -54,34 +52,32 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-white mb-4">Tautan Cepat</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#home" className="text-gray-400 hover:text-purple-400 transition-colors">
-                  Tentang Kami
+                <a href="#home" className="text-gray-400 hover:text-purple-400 transition-colors cursor-pointer">
+                  Home
                 </a>
               </li>
               <li>
-                <a href="#galeri-seniman" className="text-gray-400 hover:text-purple-400 transition-colors">
+                <a href="#galeri-seniman" className="text-gray-400 hover:text-purple-400 transition-colors cursor-pointer">
                   Galeri Seniman
                 </a>
               </li>
               <li>
-                <a href="#wawasan" className="text-gray-400 hover:text-purple-400 transition-colors">
+                <a href="#wawasan" className="text-gray-400 hover:text-purple-400 transition-colors cursor-pointer">
                   Wawasan
                 </a>
               </li>
               <li>
-                <a href="#bantuan-faq" className="text-gray-400 hover:text-purple-400 transition-colors">
+                <a href="#bantuan-faq" className="text-gray-400 hover:text-purple-400 transition-colors cursor-pointer">
                   Bantuan/FAQ
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
             <h3 className="text-white mb-4">Kontak</h3>
             <ul className="space-y-3">
@@ -103,23 +99,11 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400">
               © 2025 Galeri Harapan. Seluruh hak cipta dilindungi.
             </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                Kebijakan Privasi
-              </a>
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                Syarat & Ketentuan
-              </a>
-              <a href="#faq" className="text-gray-400 hover:text-purple-400 transition-colors">
-                Aksesibilitas
-              </a>
-            </div>
           </div>
         </div>
       </div>
