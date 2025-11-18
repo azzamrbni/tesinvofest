@@ -100,7 +100,7 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  <a href="/public/museum.html">
+                  <a href="/museum.html">
                     <button className="bg-white hover:bg-gray-50 text-purple-900 px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-xl transition-colors cursor-pointer">
                       <span>Masuk ke Museum VR</span>
                       <ArrowRight className="w-5 h-5" />
