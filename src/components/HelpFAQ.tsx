@@ -78,7 +78,7 @@ export function HelpFAQ() {
     : faqs.filter(faq => faq.category === selectedCategory);
 
   return (
-    <section id="bantuan-faq" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-purple-50">
+    <section id="bantuan-faq" className="px-4 sm:px-6 lg:px-8 pb-24 mb-16">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -87,8 +87,8 @@ export function HelpFAQ() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-gray-900 mb-4">Bantuan & FAQ</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-gray-900 dark:text-white mb-4">Bantuan & FAQ</h2>
+          <p className="text-gray-900 dark:text-white max-w-2xl mx-auto">
             Temukan jawaban untuk pertanyaan umum atau hubungi tim support kami untuk bantuan lebih lanjut
           </p>
         </motion.div>
@@ -101,34 +101,34 @@ export function HelpFAQ() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-1"
           >
-            <div className="bg-white rounded-2xl p-8 shadow-lg sticky top-24">
-              <h3 className="text-gray-900 mb-6">Butuh Bantuan Lebih?</h3>
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg sticky top-24">
+              <h3 className="text-gray-900 dark:text-white mb-6">Butuh Bantuan Lebih?</h3>
               
               <div className="space-y-4">
                 <a
                   href="mailto:support@galeriharapan.id"
-                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-purple-50 transition-colors group cursor-pointer"
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-colors group cursor-pointer"
                 >
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-gray-900 mb-1">Email Support</div>
-                    <p className="text-gray-600">support@galeriharapan.id</p>
+                    <div className="text-gray-900 dark:text-white mb-1">Email Support</div>
+                    <p className="text-gray-900 dark:text-white">support@galeriharapan.id</p>
                   </div>
                 </a>
 
                 <a
                   href="tel:+622112345678"
-                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-purple-50 transition-colors group cursor-pointer"
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-colors group cursor-pointer"
                 >
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-gray-900 mb-1">Telepon</div>
-                    <p className="text-gray-600">+62 21 1234 5678</p>
-                    <p className="text-gray-500 text-sm">Sen-Jum, 09:00-17:00</p>
+                    <div className="text-gray-900 dark:text-white mb-1">Telepon</div>
+                    <p className="text-gray-900 dark:text-white">+62 21 1234 5678</p>
+                    <p className="text-gray-900 dark:text-white text-sm">Sen-Jum, 09:00-17:00</p>
                   </div>
                 </a>
               </div>
@@ -152,7 +152,7 @@ export function HelpFAQ() {
                     className={`px-6 py-3 rounded-full transition-all cursor-pointer ${
                       selectedCategory === category
                         ? "bg-gradient-to-r from-purple-600 to-pink-500 text-white shadow-lg"
-                        : "bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-300"
+                        : "bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-500"
                     }`}
                   >
                     {category}
@@ -171,21 +171,21 @@ export function HelpFAQ() {
               {filteredFAQs.map((faq, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl shadow-md overflow-hidden"
+                  className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden"
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-purple-50 transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-between p-6 text-left hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-colors cursor-pointer"
                     aria-expanded={openIndex === index}
                   >
                     <div className="flex items-start gap-4 flex-1">
                       <HelpCircle className="w-6 h-6 text-purple-600 flex-shrink-0 mt-1" />
-                      <span className="text-gray-900 pr-4">
+                      <span className="text-gray-900 dark:text-white pr-4">
                         {faq.question}
                       </span>
                     </div>
                     <ChevronDown
-                      className={`w-6 h-6 text-gray-400 flex-shrink-0 transition-transform ${
+                      className={`w-6 h-6 text-gray-900 flex-shrink-0 transition-transform ${
                         openIndex === index ? "transform rotate-180" : ""
                       }`}
                     />
@@ -199,7 +199,7 @@ export function HelpFAQ() {
                       transition={{ duration: 0.3 }}
                       className="px-6 pb-6"
                     >
-                      <div className="pl-10 text-gray-600 leading-relaxed">
+                      <div className="pl-10 text-gray-900 dark:text-white leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>

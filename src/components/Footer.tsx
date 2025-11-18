@@ -26,9 +26,6 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
-                <span className="text-white">GH</span>
-              </div>
               <span className="text-white">Galeri Harapan</span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
@@ -89,7 +86,7 @@ export function Footer() {
                       href={info.href}
                       className="flex items-start gap-3 text-gray-400 hover:text-purple-400 transition-colors group"
                     >
-                      <Icon className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                      <Icon className="w-5 h-5 flex-shrink-0" />
                       <span className="leading-relaxed">{info.text}</span>
                     </a>
                   </li>
@@ -100,7 +97,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-4">
             <p className="text-gray-400">
               © 2025 Galeri Harapan. Seluruh hak cipta dilindungi.
             </p>

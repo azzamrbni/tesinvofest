@@ -98,15 +98,17 @@ export function GaleriSeniman() {
   };
 
   return (
-    <ArtistsGallery
-      artists={filteredArtists}
-      categories={categories}
-      searchQuery={searchQuery}
-      selectedCategory={selectedCategory}
-      onSearchChange={handleSearchChange}
-      onCategoryChange={handleCategoryChange}
-      onArtistClick={handleArtistClick}
-      onLoadMore={handleLoadMore}
-    />
+    <div className="pt-15">
+      <ArtistsGallery
+        artists={filteredArtists}
+        categories={categories}
+        searchQuery={searchQuery}
+        selectedCategory={selectedCategory}
+        onSearchChange={handleSearchChange}
+        onCategoryChange={handleCategoryChange}
+        onArtistClick={handleArtistClick}
+        onLoadMore={handleLoadMore}
+      />
+    </div>
   );
 }

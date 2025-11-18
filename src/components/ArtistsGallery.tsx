@@ -27,7 +27,7 @@ export function ArtistsGallery({
 }: ArtistsGalleryProps) {
 
   return (
-    <section id="galeri-seniman" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-50 to-white">
+    <section id="galeri-seniman" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,8 +36,8 @@ export function ArtistsGallery({
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-gray-900 mb-4">Galeri Seniman</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-gray-900 dark:text-white mb-4">Galeri Seniman</h2>
+          <p className="text-gray-900 dark:text-white max-w-2xl mx-auto">
             Temukan dan jelajahi karya-karya inspiratif dari seniman berbakat di seluruh Indonesia
           </p>
         </motion.div>
@@ -87,8 +87,8 @@ export function ArtistsGallery({
             animate={{ opacity: 1 }}
             className="text-center py-20"
           >
-            <Filter className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500">
+            <Filter className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <p className="text-gray-900 dark:text-white">
               Tidak ada seniman yang ditemukan. Coba kata kunci lain.
             </p>
           </motion.div>
@@ -99,7 +99,7 @@ export function ArtistsGallery({
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center"
+            className="text-center mb-4"
           >
             <button 
               onClick={onLoadMore}

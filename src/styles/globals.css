@@ -1,5 +1,87 @@
 @custom-variant dark (&:is(.dark *));
 
+.dark .dark\:text-white,
+.dark .dark\:\!text-white,
+:is(.dark *):where(.dark\:text-white, .dark\:\!text-white) {
+  color: #F5F4F5 !important;
+}
+
+.dark .dark\:text-gray-50,
+.dark .dark\:\!text-gray-50,
+:is(.dark *):where(.dark\:text-gray-50, .dark\:\!text-gray-50) {
+  color: #F5F4F5 !important;
+}
+
+.dark .dark\:text-gray-100,
+:is(.dark *):where(.dark\:text-gray-100) {
+  color: #F5F4F5 !important;
+}
+
+.dark .dark\:text-gray-200,
+:is(.dark *):where(.dark\:text-gray-200) {
+  color: #F5F4F5 !important;
+}
+
+.dark .dark\:text-\[\#F5F4F5\],
+:is(.dark *):where(.dark\:text-\[\#F5F4F5\]) {
+  color: #F5F4F5 !important;
+}
+
+.dark .dark\:text-purple-300,
+:is(.dark *):where(.dark\:text-purple-300) {
+  color: oklch(0.827 0.119 306.383) !important;
+}
+
+.dark .dark\:text-purple-400,
+:is(.dark *):where(.dark\:text-purple-400) {
+  color: oklch(0.714 0.203 305.504) !important;
+}
+
+.dark .dark\:bg-gray-800,
+:is(.dark *):where(.dark\:bg-gray-800) {
+  background-color: oklch(0.278 0.033 256.848) !important;
+}
+
+.dark .dark\:bg-black,
+:is(.dark *):where(.dark\:bg-black) {
+  background-color: #000000 !important;
+}
+
+.dark .dark\:bg-purple-900\/30,
+:is(.dark *):where(.dark\:bg-purple-900\/30) {
+  background-color: rgba(97, 45, 124, 0.3) !important;
+}
+
+.dark .dark\:bg-purple-900\/40,
+:is(.dark *):where(.dark\:bg-purple-900\/40) {
+  background-color: rgba(97, 45, 124, 0.4) !important;
+}
+
+.dark .dark\:hover\:bg-purple-900\/30:hover,
+:is(.dark *):where(.dark\:hover\:bg-purple-900\/30):hover {
+  background-color: rgba(97, 45, 124, 0.3) !important;
+}
+
+.dark .dark\:hover\:text-purple-300:hover,
+:is(.dark *):where(.dark\:hover\:text-purple-300):hover {
+  color: oklch(0.827 0.119 306.383) !important;
+}
+
+.dark .dark\:hover\:text-purple-200:hover,
+:is(.dark *):where(.dark\:hover\:text-purple-200):hover {
+  color: oklch(0.887 0.08 306.5) !important;
+}
+
+.dark .dark\:border-gray-700,
+:is(.dark *):where(.dark\:border-gray-700) {
+  border-color: oklch(0.373 0.034 259.733) !important;
+}
+
+.dark .dark\:hover\:border-purple-500:hover,
+:is(.dark *):where(.dark\:hover\:border-purple-500):hover {
+  border-color: oklch(0.627 0.265 303.9) !important;
+}
+
 :root {
   --font-size: 16px;
   --background: #ffffff;
@@ -39,6 +121,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  background-image: linear-gradient(135deg, #a9caac 25%, #74b787 75%);
 }
 
 .dark {
@@ -76,6 +159,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  background-image: linear-gradient(135deg, #060040 15%, #1d0039 85%);
 }
 
 @theme inline {
@@ -125,13 +209,43 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background-image: linear-gradient(-45deg, #f5f5f5, #e0e0e0, #d6d6d6, #ececec);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    min-height: 100vh;
+    animation: gradientAnimation 15s ease infinite;
+  }
+
+  .dark body {
+    background-image: linear-gradient(-45deg, #1a1a1a, #2d2d2d, #242424, #333333);
+  }
+
+  .animated-gradient {
+    background-image: linear-gradient(
+      -45deg, 
+      hsl(var(--background)), 
+      hsl(var(--secondary) / 0.15),
+      hsl(var(--primary) / 0.15),
+      hsl(var(--background))
+    );
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+  }
+
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }
 
-/**
- * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
- */
 @layer base {
   :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
     h1 {
@@ -186,4 +300,27 @@
 
 html {
   font-size: var(--font-size);
+}
+
+body {
+  background-image: linear-gradient(-45deg, #f5f5f5, #e0e0e0, #d6d6d6, #ececec);
+  background-size: 400% 400%;
+  background-attachment: fixed;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+.dark body {
+  background-image: linear-gradient(-45deg, #1a1a1a, #2d2d2d, #242424, #333333);
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

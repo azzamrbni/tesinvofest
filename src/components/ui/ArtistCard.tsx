@@ -38,14 +38,14 @@ export function ArtistCard({ artist, onProfileClick }: ArtistCardProps) {
           <h3 className="text-xl font-bold text-gray-900 mb-2">{artist.name}</h3>
           
           <div className="space-y-2 mb-4">
-            <div className="flex items-center gap-2 text-gray-600">
+            <div className="flex items-center gap-2 text-gray-900">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
               <span>{artist.location}</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-600">
+            <div className="flex items-center gap-2 text-gray-900">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
               </svg>
@@ -54,7 +54,7 @@ export function ArtistCard({ artist, onProfileClick }: ArtistCardProps) {
           </div>
 
           <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-            <span className="text-gray-500 text-sm">
+            <span className="text-gray-900 text-sm">
               {artist.artworks} Karya
             </span>
             <button 

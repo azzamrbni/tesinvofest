@@ -176,7 +176,7 @@ export function ChatWidget() {
                 <div className="p-6 flex flex-col gap-4 h-full justify-center">
                   <div className="text-center mb-2">
                     <h4 className="text-gray-900 font-medium mb-2">Halo! 👋</h4>
-                    <p className="text-sm text-gray-500">Bagaimana Anda ingin menghubungi kami hari ini?</p>
+                    <p className="text-sm text-gray-900">Bagaimana Anda ingin menghubungi kami hari ini?</p>
                   </div>
                   
                   <button 
@@ -198,7 +198,7 @@ export function ChatWidget() {
                       </div>
                       <div className="text-left">
                         <div className="font-medium text-gray-900">Chat dengan AI</div>
-                        <div className="text-xs text-gray-500">Tanya soal teknis & konten</div>
+                        <div className="text-xs text-gray-900">Tanya soal teknis & konten</div>
                       </div>
                     </div>
                     <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-purple-500" />
@@ -223,7 +223,7 @@ export function ChatWidget() {
                       </div>
                       <div className="text-left">
                         <div className="font-medium text-gray-900">WhatsApp Admin</div>
-                        <div className="text-xs text-gray-500">Bicara dengan manusia</div>
+                        <div className="text-xs text-gray-900">Bicara dengan manusia</div>
                       </div>
                     </div>
                     <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-green-500" />
@@ -266,7 +266,7 @@ export function ChatWidget() {
                             }}
                           >
                             {msg.text}
-                            <div className={`text-right ${msg.sender === 'user' ? 'text-purple-200' : 'text-gray-500'}`} style={{ fontSize: '10px', marginTop: '0.5rem' }}>
+                            <div className={`text-right ${msg.sender === 'user' ? 'text-purple-200' : 'text-gray-700'}`} style={{ fontSize: '10px', marginTop: '0.5rem' }}>
                               {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </div>
                           </div>
@@ -311,7 +311,7 @@ export function ChatWidget() {
                       </Button>
                     </form>
                     <div className="text-center" style={{ marginTop: '0.75rem' }}>
-                        <span className="text-gray-400" style={{ fontSize: '10px', lineHeight: '1.4' }}>
+                        <span className="text-gray-900" style={{ fontSize: '10px', lineHeight: '1.4' }}>
                             AI dapat membuat kesalahan. Cek info penting.
                         </span>
                     </div>

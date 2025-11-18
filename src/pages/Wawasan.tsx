@@ -12,5 +12,9 @@ export function Wawasan() {
     "https://images.unsplash.com/photo-1545181824-24c265f8fd48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwaWxsdXN0cmF0aW9uJTIwYXJ0fGVufDF8fHx8MTc2MzEyMzQxNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   ];
 
-  return <Insights insightImages={insightImages} />;
+  return (
+    <div className="pt-15">
+      <Insights insightImages={insightImages} />
+    </div>
+  );
 }

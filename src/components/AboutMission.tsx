@@ -39,7 +39,7 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
   ];
 
   return (
-    <section id="tentang-misi" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="tentang-misi" className="px-4 sm:px-6 lg:px-8 pb-20">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,8 +48,8 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-gray-900 mb-6">Tentang Misi Kami</h2>
-          <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <h2 className="text-gray-900 dark:text-white mb-6">Tentang Misi Kami</h2>
+          <p className="text-gray-900 dark:text-white max-w-3xl mx-auto leading-relaxed">
             Galeri Harapan lahir dari visi untuk menciptakan ekosistem seni yang inklusif,
             di mana setiap seniman memiliki kesempatan yang sama untuk berbagi karya dan
             mendapatkan pengakuan yang layak.
@@ -71,14 +71,14 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="bg-purple-50 rounded-2xl p-8">
+            <div className="bg-purple-50 dark:bg-purple-900/40 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center">
                   <Eye className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-gray-900">Visi Kami</h3>
+                <h3 className="text-gray-900 dark:text-white">Visi Kami</h3>
               </div>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-900 dark:text-white leading-relaxed">
                 Menjadi platform galeri virtual terdepan di Indonesia yang memberdayakan
                 seniman berkebutuhan khusus untuk berkarya, berkembang, dan diakui secara
                 global melalui teknologi yang inovatif dan inklusif.
@@ -100,24 +100,24 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="bg-pink-50 rounded-2xl p-8">
+            <div className="bg-pink-50 dark:bg-pink-900/40 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center">
                   <Target className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-gray-900">Misi Kami</h3>
+                <h3 className="text-gray-900 dark:text-white">Misi Kami</h3>
               </div>
-              <ul className="text-gray-700 leading-relaxed space-y-3">
+              <ul className="text-gray-900 dark:text-white leading-relaxed space-y-3">
                 <li className="flex gap-3">
-                  <span className="text-purple-600 mt-1">•</span>
+                  <span className="text-purple-600 dark:text-purple-400 mt-1">•</span>
                   <span>Menyediakan platform digital yang aksesibel untuk seniman disabilitas</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-purple-600 mt-1">•</span>
+                  <span className="text-purple-600 dark:text-purple-400 mt-1">•</span>
                   <span>Meningkatkan apresiasi masyarakat terhadap seni inklusif</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-purple-600 mt-1">•</span>
+                  <span className="text-purple-600 dark:text-purple-400 mt-1">•</span>
                   <span>Menciptakan peluang ekonomi bagi seniman berkebutuhan khusus</span>
                 </li>
               </ul>
@@ -156,7 +156,7 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h3 className="text-gray-900 text-center mb-12">Nilai-Nilai Kami</h3>
+          <h3 className="text-gray-900 dark:text-white text-center mb-12">Nilai-Nilai Kami</h3>
           <div className="grid md:grid-cols-2 gap-8">
             {values.map((value, index) => {
               const Icon = value.icon;
@@ -167,7 +167,7 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex gap-6 p-6 rounded-2xl hover:bg-purple-50 transition-colors"
+                  className="flex gap-6 p-6 rounded-2xl hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-colors"
                 >
                   <div className="flex-shrink-0">
                     <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center">
@@ -175,8 +175,8 @@ export function AboutMission({ studioImage, teamImage }: AboutMissionProps) {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-gray-900 mb-2">{value.title}</h4>
-                    <p className="text-gray-600 leading-relaxed">
+                    <h4 className="text-gray-900 dark:text-white mb-2">{value.title}</h4>
+                    <p className="text-gray-900 dark:text-white leading-relaxed">
                       {value.description}
                     </p>
                   </div>
