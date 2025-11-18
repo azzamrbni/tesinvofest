@@ -224,68 +224,68 @@ Avatar, Scroll Area, Input, Button, Accordion, Dialog, Checkbox, Select, Tabs, T
 
 ---
 📦 src/
-├── 📁 components/              # 🎨 Presentational Components
-│   ├── 📁 ui/                 # Atomic UI Components (Radix-based)
-│   │   ├── avatar.tsx
-│   │   ├── button.tsx
-│   │   ├── input.tsx
-│   │   ├── scroll-area.tsx
-│   │   ├── ArtistCard.tsx     # Card component untuk artist display
-│   │   ├── FilterComponents.tsx # SearchBar & CategoryFilter
-│   │   ├── use-mobile.ts      # Hook untuk mobile detection
-│   │   └── utils.ts           # cn() utility untuk className merging
-│   ├── 📁 figma/
-│   │   └── ImageWithFallback.tsx # Smart image loader dengan fallback
-│   ├── AboutMission.tsx       # About & Mission section
-│   ├── ArtistsGallery.tsx     # Artist gallery grid (Presentational)
-│   ├── ChatWidget.tsx         # AI-powered chat widget (Strategy Pattern)
-│   ├── FeaturedArtists.tsx    # Featured artists showcase
-│   ├── Footer.tsx             # Footer dengan links & social media
-│   ├── HelpFAQ.tsx            # FAQ accordion component
-│   ├── HeroPortal.tsx         # Hero section dengan VR portal
-│   ├── Insights.tsx           # Data insights & statistics
-│   ├── MissionSection.tsx     # Mission statement section
-│   └── Navbar.tsx             # Navigation bar dengan mobile menu
-│
-├── 📁 pages/                  # 📄 Container Components (Pages)
-│   ├── Home.tsx               # Landing page
-│   ├── TentangMisi.tsx        # About Mission page
-│   ├── GaleriSeniman.tsx      # Artist Gallery page (Container)
-│   ├── Wawasan.tsx            # Insights page
-│   └── BantuanFAQ.tsx         # Help & FAQ page
-│
-├── 📁 services/               # 🔧 Business Logic Services
-│   └── KnowledgeBaseService.ts # Singleton service untuk knowledge base
-│
-├── 📁 strategies/             # 🎯 Strategy Pattern Implementation
-│   └── ChatResponseStrategy.ts # Chat response strategies
-│
-├── 📁 types/                  # 📐 TypeScript Types & Utilities
-│   └── Artist.ts              # Artist interface & ArtistFilter utility
-│
-├── 📁 utils/                  # 🛠️ Utility Functions
-│   └── knowledgeBase.ts       # Knowledge base data & AI prompts
-│
-├── 📁 styles/                 # 🎨 Global Styles
-│   └── globals.css            # Tailwind imports & global CSS
-│
-├── App.tsx                    # 🏠 Root component & routing
-├── main.tsx                   # 🚀 Entry point
-├── index.css                  # CSS entry point
-└── Attributions.md            # 📝 Credits & attributions
+-├── 📁 components/              # 🎨 Presentational Components
+-│   ├── 📁 ui/                 # Atomic UI Components (Radix-based)
+-│   │   ├── avatar.tsx
+-│   │   ├── button.tsx
+-│   │   ├── input.tsx
+-│   │   ├── scroll-area.tsx
+-│   │   ├── ArtistCard.tsx     # Card component untuk artist display
+-│   │   ├── FilterComponents.tsx # SearchBar & CategoryFilter
+-│   │   ├── use-mobile.ts      # Hook untuk mobile detection
+-│   │   └── utils.ts           # cn() utility untuk className merging
+-│   ├── 📁 figma/
+-│   │   └── ImageWithFallback.tsx # Smart image loader dengan fallback
+-│   ├── AboutMission.tsx       # About & Mission section
+-│   ├── ArtistsGallery.tsx     # Artist gallery grid (Presentational)
+-│   ├── ChatWidget.tsx         # AI-powered chat widget (Strategy Pattern)
+-│   ├── FeaturedArtists.tsx    # Featured artists showcase
+-│   ├── Footer.tsx             # Footer dengan links & social media
+-│   ├── HelpFAQ.tsx            # FAQ accordion component
+-│   ├── HeroPortal.tsx         # Hero section dengan VR portal
+-│   ├── Insights.tsx           # Data insights & statistics
+-│   ├── MissionSection.tsx     # Mission statement section
+-│   └── Navbar.tsx             # Navigation bar dengan mobile menu
+-│
+-├── 📁 pages/                  # 📄 Container Components (Pages)
+-│   ├── Home.tsx               # Landing page
+-│   ├── TentangMisi.tsx        # About Mission page
+-│   ├── GaleriSeniman.tsx      # Artist Gallery page (Container)
+-│   ├── Wawasan.tsx            # Insights page
+-│   └── BantuanFAQ.tsx         # Help & FAQ page
+-│
+-├── 📁 services/               # 🔧 Business Logic Services
+-│   └── KnowledgeBaseService.ts # Singleton service untuk knowledge base
+-│
+-├── 📁 strategies/             # 🎯 Strategy Pattern Implementation
+-│   └── ChatResponseStrategy.ts # Chat response strategies
+-│
+-├── 📁 types/                  # 📐 TypeScript Types & Utilities
+-│   └── Artist.ts              # Artist interface & ArtistFilter utility
+-│
+-├── 📁 utils/                  # 🛠️ Utility Functions
+-│   └── knowledgeBase.ts       # Knowledge base data & AI prompts
+-│
+-├── 📁 styles/                 # 🎨 Global Styles
+-│   └── globals.css            # Tailwind imports & global CSS
+-│
+-├── App.tsx                    # 🏠 Root component & routing
+-├── main.tsx                   # 🚀 Entry point
+-├── index.css                  # CSS entry point
+-└── Attributions.md            # 📝 Credits & attributions
 
 📦 public/
-├── Logo.png                   # Logo galeri harapan
-├── artworks.csv               # Artwork data
-├── museum.html                # VR museum entrance
-└── main.js                    # A-Frame VR components
+-├── Logo.png                   # Logo galeri harapan
+-├── artworks.csv               # Artwork data
+-├── museum.html                # VR museum entrance
+-└── main.js                    # A-Frame VR components
 
 📄 Root Files
-├── DESIGN_PATTERNS.md         # 📖 Design patterns documentation
-├── README.md                  # 📚 This file
-├── package.json               # Dependencies
-├── vite.config.ts             # Vite configuration
-└── tailwind.config.js         # Tailwind configuration
+-├── DESIGN_PATTERNS.md         # 📖 Design patterns documentation
+-├── README.md                  # 📚 This file
+-├── package.json               # Dependencies
+-├── vite.config.ts             # Vite configuration
+-└── tailwind.config.js         # Tailwind configuration
 
 ## 🚀 Quick Start
 
