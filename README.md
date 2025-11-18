@@ -223,8 +223,6 @@ Avatar, Scroll Area, Input, Button, Accordion, Dialog, Checkbox, Select, Tabs, T
 ## 📂 Struktur Proyek
 
 ---
-
-```
 📦 src/
 ├── 📁 components/              # 🎨 Presentational Components
 │   ├── 📁 ui/                 # Atomic UI Components (Radix-based)
@@ -288,7 +286,6 @@ Avatar, Scroll Area, Input, Button, Accordion, Dialog, Checkbox, Select, Tabs, T
 ├── package.json               # Dependencies
 ├── vite.config.ts             # Vite configuration
 └── tailwind.config.js         # Tailwind configuration
-```
 
 ## 🚀 Quick Start
 
@@ -301,24 +298,28 @@ npm >= 9.0.0
 
 ### ⚡ Installation & Run
 
-```bash
 # 1️⃣ Clone repository
+```bash
 git clone https://github.com/azzamrbni/tesinvofest.git
 cd tesinvofest
+```
 
 # 2️⃣ Install dependencies
+```bash
 npm install
+```
 
 # 3️⃣ Setup environment variables (optional)
 # Create .env file dan tambahkan:
 # VITE_GROQ_API_KEY=your_groq_api_key_here
 
 # 4️⃣ Run development server
+```bash
 npm run dev
+```
 
 # 5️⃣ Open browser
 # http://localhost:5173
-```
 
 ### 🏗️ Build for Production
 
@@ -336,8 +337,6 @@ npm run dev
 📐 TypeScript Types : 100% type-safe
 🧪 Design Patterns : 6 OOP patterns implemented
 📦 Dependencies : 40+ packages
-
-```
 
 ---
 
@@ -392,7 +391,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction...
 
-````
+```
 
 ---
 
