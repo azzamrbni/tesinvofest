@@ -19,10 +19,10 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-gray-900 dark:text-[#F5F4F5] mb-4">
+          <h1 className="text-gray-900 mb-4">
             Selamat Datang di Galeri Harapan
           </h1>
-          <p className="text-gray-900 dark:text-[#F5F4F5] max-w-2xl mx-auto">
+          <p className="text-gray-900 max-w-2xl mx-auto">
             Jelajahi ruang seni virtual yang menampilkan karya-karya luar biasa dari seniman berkebutuhan khusus
           </p>
         </motion.div>
@@ -154,7 +154,7 @@ export function HeroPortal({ galleryImage }: HeroPortalProps) {
           >
             <a
               href="#galeri-seniman"
-              className="inline-flex items-center gap-2 text-gray-900 dark:text-[#F5F4F5] hover:text-purple-600 dark:hover:text-purple-300 transition-colors group"
+              className="inline-flex items-center gap-2 text-gray-900 hover:text-purple-600 transition-colors group"
             >
               <span>Atau, jelajahi Galeri 2D kami</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

@@ -1,14 +1,12 @@
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 interface NavbarProps {
   currentPage: string;
   onNavigate: (page: string) => void;
-  isDarkMode: boolean;
-  onToggleDarkMode: () => void;
 }
 
-export function Navbar({ currentPage, onNavigate, isDarkMode, onToggleDarkMode }: NavbarProps) {
+export function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const menuItems = [
@@ -64,19 +62,6 @@ export function Navbar({ currentPage, onNavigate, isDarkMode, onToggleDarkMode }
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={onToggleDarkMode}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
-              aria-label="Toggle dark mode"
-              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {isDarkMode ? (
-                <Sun className="w-5 h-5 text-purple-600" />
-              ) : (
-                <Moon className="w-5 h-5 text-purple-600" />
-              )}
-            </button>
-            
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"

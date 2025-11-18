@@ -30,10 +30,10 @@ export function MissionSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-gray-900 dark:text-white mb-6">
+          <h2 className="text-gray-900 mb-6">
             Memberi Panggung, Membuka Peluang.
           </h2>
-          <p className="text-gray-900 dark:text-white max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-900 max-w-3xl mx-auto leading-relaxed">
             Galeri Harapan adalah platform digital yang didedikasikan untuk seniman berkebutuhan khusus.
             Kami percaya bahwa setiap karya seni memiliki suara yang layak didengar, dan setiap seniman
             berhak mendapatkan panggung untuk berbagi visi mereka dengan dunia.
@@ -50,13 +50,13 @@ export function MissionSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/40 dark:via-pink-900/40 dark:to-purple-900/40 rounded-2xl p-8 hover:shadow-xl transition-shadow"
+                className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 hover:shadow-xl transition-shadow"
               >
                 <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center mb-6">
                   <Icon className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-gray-900 dark:text-white mb-3">{feature.title}</h3>
-                <p className="text-gray-900 dark:text-white leading-relaxed">
+                <h3 className="text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-gray-900 leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>

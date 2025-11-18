@@ -101,8 +101,8 @@ export function Insights({ insightImages }: InsightsProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-gray-900 dark:text-white mb-4">Wawasan & Artikel</h2>
-          <p className="text-gray-900 dark:text-white max-w-2xl mx-auto">
+          <h2 className="text-gray-900 mb-4">Wawasan & Artikel</h2>
+          <p className="text-gray-900 max-w-2xl mx-auto">
             Baca kisah inspiratif, tips, dan wawasan terbaru tentang dunia seni dan seniman berkebutuhan khusus
           </p>
         </motion.div>
@@ -112,7 +112,7 @@ export function Insights({ insightImages }: InsightsProps) {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-gray-900 dark:text-white mb-8"
+            className="text-gray-900 mb-8"
           >
             Artikel Pilihan
           </motion.h3>
@@ -126,7 +126,7 @@ export function Insights({ insightImages }: InsightsProps) {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className="group cursor-pointer"
               >
-                <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                   <div className="aspect-[16/9] overflow-hidden relative">
                     <ImageWithFallback
                       src={article.image}
@@ -141,14 +141,14 @@ export function Insights({ insightImages }: InsightsProps) {
                   </div>
 
                   <div className="p-8">
-                    <h3 className="text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                    <h3 className="text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
                       {article.title}
                     </h3>
-                    <p className="text-gray-900 dark:text-white mb-6 leading-relaxed">
+                    <p className="text-gray-900 mb-6 leading-relaxed">
                       {article.excerpt}
                     </p>
 
-                    <div className="flex flex-wrap items-center gap-4 text-gray-900 dark:text-white mb-6">
+                    <div className="flex flex-wrap items-center gap-4 text-gray-900 mb-6">
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4" />
                         <span>{article.author}</span>
@@ -163,7 +163,7 @@ export function Insights({ insightImages }: InsightsProps) {
                       </div>
                     </div>
 
-                    <button className="text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 inline-flex items-center gap-2 group/btn transition-colors cursor-pointer">
+                    <button className="text-purple-600 hover:text-purple-700 inline-flex items-center gap-2 group/btn transition-colors cursor-pointer">
                       <span>Baca Selengkapnya</span>
                       <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
@@ -179,7 +179,7 @@ export function Insights({ insightImages }: InsightsProps) {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-gray-900 dark:text-white mb-8"
+            className="text-gray-900 mb-8"
           >
             Artikel Terbaru
           </motion.h3>
@@ -193,7 +193,7 @@ export function Insights({ insightImages }: InsightsProps) {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group cursor-pointer"
               >
-                <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                   <div className="aspect-[16/9] overflow-hidden relative">
                     <ImageWithFallback
                       src={article.image}
@@ -209,19 +209,19 @@ export function Insights({ insightImages }: InsightsProps) {
                   </div>
 
                   <div className="p-6">
-                    <h4 className="text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors line-clamp-2">
+                    <h4 className="text-gray-900 mb-3 group-hover:text-purple-600 transition-colors line-clamp-2">
                       {article.title}
                     </h4>
-                    <p className="text-gray-900 dark:text-white mb-4 leading-relaxed line-clamp-2">
+                    <p className="text-gray-900 mb-4 leading-relaxed line-clamp-2">
                       {article.excerpt}
                     </p>
 
-                    <div className="flex items-center justify-between text-gray-900 dark:text-white pt-4 border-t border-gray-100 dark:border-gray-700">
+                    <div className="flex items-center justify-between text-gray-900 pt-4 border-t border-gray-100">
                       <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4" />
                         <span>{article.readTime}</span>
                       </div>
-                      <ArrowRight className="w-5 h-5 text-purple-600 dark:text-purple-300 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-5 h-5 text-purple-600 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
                 </div>

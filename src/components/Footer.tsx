@@ -101,6 +101,17 @@ export function Footer() {
             <p className="text-gray-400">
               © 2025 Galeri Harapan. Seluruh hak cipta dilindungi.
             </p>
+            <p className="text-gray-400">
+              Artwork credits:{" "}
+              <a 
+                href="https://www.thespecial.id" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-purple-400 hover:text-purple-300 transition-colors underline"
+              >
+                The Special
+              </a>
+            </p>
           </div>
         </div>
       </div>

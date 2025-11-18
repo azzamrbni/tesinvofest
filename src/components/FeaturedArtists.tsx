@@ -45,10 +45,10 @@ export function FeaturedArtists({ artworks }: FeaturedArtistsProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-gray-900 dark:text-white mb-4">
+          <h2 className="text-gray-900 mb-4">
             Seniman Unggulan Bulan Ini
           </h2>
-          <p className="text-gray-900 dark:text-white max-w-2xl mx-auto">
+          <p className="text-gray-900 max-w-2xl mx-auto">
             Kenali para seniman berbakat yang karyanya sedang dipamerkan di galeri kami
           </p>
         </motion.div>
@@ -63,7 +63,7 @@ export function FeaturedArtists({ artworks }: FeaturedArtistsProps) {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               className="group"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                   <ImageWithFallback
@@ -74,10 +74,10 @@ export function FeaturedArtists({ artworks }: FeaturedArtistsProps) {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-gray-900 mb-2">
                     {artist.name}
                   </h3>
-                  <p className="text-gray-900 dark:text-white mb-6 leading-relaxed">
+                  <p className="text-gray-900 mb-6 leading-relaxed">
                     {artist.description}
                   </p>
 
@@ -100,7 +100,7 @@ export function FeaturedArtists({ artworks }: FeaturedArtistsProps) {
         >
           <a
             href="#galeri-seniman"
-            className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors group"
+            className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors group"
           >
             <span>Lihat Semua Seniman</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
